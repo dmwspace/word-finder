@@ -1,0 +1,15 @@
+h1 {
+    color: red;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+h2 {
+    color: purple;
+}
+
+#container {
+    border: solid;
+    width: 50%;
+    height: 600px;
+    display: grid;
+}
