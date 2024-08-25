@@ -1,5 +1,5 @@
-function Hooks() {
-    
+export default function Hooks() {
+ 
     letterCubes = [
         ['r', 'y', 'f', 'a', 'i', 's'],
         ['qu', 'an', 'in', 'er', 'he', 'th'],
@@ -27,6 +27,6 @@ function Hooks() {
         ['d', 'h', 'n', 'd', 'o', 't'],
         ['m', 'a', 'n', 'g', 'e', 'n']
     ]
-}
 
-export default Hooks
+
+}
