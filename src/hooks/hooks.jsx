@@ -1,28 +1,45 @@
 import {useState} from 'react'
-import letterCubes from "../components/tiles";
+import letterCubes from "../components/tiles"
 
 export default function Hooks() {
 
-    const [tileOrder, setTileOrder] = useState([])
-    // const [cubeArr, setCubeArr] = useState(letterCubes)
+    const [gridLetters, setGridLetters] = useState([])
 
-    function restartButtonClick() {
-        let gridArr = []
-                
+    //console.log('tileOrder: ', tileOrder)
+
+    function startGame() {
+        setGridLetters([])
+        //const gridArr = []
+        
         for (let i = 0; i < 25; i++) {
             let randInt = Math.floor(Math.random() * letterCubes.length)
             let randLetterInt = Math.floor(Math.random() * letterCubes[randInt].length)
             let cubeArr = letterCubes[randInt]
-            gridArr.push(cubeArr[randLetterInt])
+            //console.log('cubeArr: ', cubeArr)
+            //console.log('cubeArr: ', cubeArr)
+            let letter = cubeArr[randLetterInt]
+            //console.log('letter: ', letter)
+            setGridLetters(prevGridLetters => [...prevGridLetters, letter])
+            //console.log('letter: ', letter)
+            //gridArr.push(letter)
             letterCubes.splice(randInt, 1)
+            //console.log('letterCubes: ', letterCubes)
+            //console.log('tileOrder: ', tileOrder)
+            //letterCubes.splice(randInt, 1)
         }
-        console.log(gridArr)
+        //setGridLetters(gridArr)
+        //console.log('gridLetters: ', gridLetters)
+    }
 
+    function restartButtonClick() {
+        startGame()
     }
     
     return (
         {
-            restartButtonClick
+            restartButtonClick,
+            startGame,
+            gridLetters,
         }
     )
 

@@ -3,8 +3,14 @@ import Hooks from "../hooks/hooks.jsx"
 function Container() {
         
     const {
-        restartButtonClick
+        restartButtonClick,
+        startGame,
+        gridLetters,
     } = Hooks()
+
+    console.log('gridLetters: ', gridLetters)
+    
+
 
     return (
         <>
