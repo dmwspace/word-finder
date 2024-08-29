@@ -1,32 +1,30 @@
+import {useState} from 'react'
+import letterCubes from "../components/tiles";
+
 export default function Hooks() {
- 
-    letterCubes = [
-        ['r', 'y', 'f', 'a', 'i', 's'],
-        ['qu', 'an', 'in', 'er', 'he', 'th'],
-        ['c', 'n', 't', 'e', 's', 'c'],
-        ['a', 'r', 'a', 'f', 's', 'a'],
-        ['e', 'a', 'e', 'u', 'm', 'g'],
-        ['h', 'o', 'l', 'h', 'd', 'r'],
-        ['e', 'e', 'a', 'e', 'e', 'a'],
-        ['g', 'v', 'w', 'r', 'r', 'o'],
-        ['o', 'u', 'n', 't', 'w', 'o'],
-        ['p', 'y', 'r', 'i', 's', 'y'],
-        ['e', 't', 't', 't', 'o', 'm'],
-        ['z', 'k', 'j', 'b', 'b', 'x'],
-        ['d', 'n', 'n', 'n', 'e', 'a'],
-        ['s', 'p', 'l', 'e', 'i', 't'],
-        ['l', 'o', 'r', 'n', 'd', 'h'],
-        ['p', 'c', 't', 'e', 'i', 's'],
-        ['h', 'd', 'w', 'h', 'o', 'n'],
-        ['m', 'e', 'e', 'e', 'e', 'a'],
-        ['s', 'i', 'a', 'r', 'f', 'a'],
-        ['t', 'i', 'e', 't', 'i', 'i'],
-        ['i', 's', 'l', 'i', 'e', 't'],
-        ['o', 't', 'o', 'o', 'u', 't'],
-        ['s', 'e', 's', 's', 'u', 'n'],
-        ['d', 'h', 'n', 'd', 'o', 't'],
-        ['m', 'a', 'n', 'g', 'e', 'n']
-    ]
+
+    const [tileOrder, setTileOrder] = useState([])
+    // const [cubeArr, setCubeArr] = useState(letterCubes)
+
+    function restartButtonClick() {
+        let gridArr = []
+                
+        for (let i = 0; i < 25; i++) {
+            let randInt = Math.floor(Math.random() * letterCubes.length)
+            let randLetterInt = Math.floor(Math.random() * letterCubes[randInt].length)
+            let cubeArr = letterCubes[randInt]
+            gridArr.push(cubeArr[randLetterInt])
+            letterCubes.splice(randInt, 1)
+        }
+        console.log(gridArr)
+
+    }
+    
+    return (
+        {
+            restartButtonClick
+        }
+    )
 
 
 }
