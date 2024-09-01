@@ -1,13 +1,17 @@
-import {useState} from 'react'
+import { useState, useEffect } from 'react'
 import letterCubes from "../components/tiles"
 
 export default function Hooks() {
 
     const [gridLetters, setGridLetters] = useState([])
+    const [timeRemaining, setTimeRemaining] = useState(240)
+    const [isTimeRunning, setIsTimeRunning] = useState(false)
 
     function startGame() {
 
         setGridLetters([])
+        setTimeRemaining(240)
+        setIsTimeRunning(true)
         
         for (let i = 0; i < 25; i++) {
             let randInt = Math.floor(Math.random() * letterCubes.length)
@@ -20,6 +24,19 @@ export default function Hooks() {
 
     }
 
+    useEffect(() => {
+        if (isTimeRunning && timeRemaining > 0) {
+            setTimeout(() => {
+                setTimeRemaining(time => time - 1)}, 1000)
+        } else if (timeRemaining === 0) {
+            endGame()
+        }
+    }, [isTimeRunning, timeRemaining])
+
+    function endGame() {
+        setIsTimeRunning(false)
+    }
+
     function restartButtonClick() {
         startGame()
     }
@@ -29,6 +46,8 @@ export default function Hooks() {
             restartButtonClick,
             startGame,
             gridLetters,
+            isTimeRunning,
+            timeRemaining
         }
     )
 

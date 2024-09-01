@@ -6,17 +6,22 @@ function Container() {
         restartButtonClick,
         startGame,
         gridLetters,
+        isTimeRunning,
+        timeRemaining
     } = Hooks()
 
-    console.log('gridLetters: ', gridLetters)
+    let min = Math.floor(timeRemaining / 60)
+    let sec = timeRemaining % 60
+
+    let formattedTime = (timeRemaining === 0) ?
+        "Time's up!" :
+        ((min < 1 ? "" : min + ":") + (sec < 10 ? "0" + sec : sec))
     
     return (
         <>
             <div id="container">
                 <div id="word-entry"><h2>Word Entry</h2></div>
-                <div id="restart" onClick={restartButtonClick}>
-                    <h2>Restart</h2>
-                </div>
+                <div id="restart" onClick={restartButtonClick}><h2>Restart</h2></div>
                 <div id="letter-grid">
                     <div className="tile" name="zero">{gridLetters[0]}</div>
                     <div className="tile" name="one">{gridLetters[1]}</div>
@@ -44,7 +49,7 @@ function Container() {
                     <div className="tile" name="twentythree">{gridLetters[23]}</div>
                     <div className="tile" name="twentyfour">{gridLetters[24]}</div>
                 </div>
-                <div id="timer"><h2>Timer</h2></div>
+                <div id="timer"><h2>{formattedTime}</h2> </div>
                 <div id="answers"><h2>Answers</h2></div>
                 <div id="enter"><h2>Enter</h2></div>
                 <div id="undo"><h2>Undo</h2></div>

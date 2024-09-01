@@ -42,7 +42,7 @@ h2 {
     grid-template-rows: repeat(5, 1fr);
 }
 
-#timer {
+#timer{
     border-bottom: solid;
     grid-row: 2 / 3;
     grid-column: 6 / 8;
