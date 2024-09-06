@@ -7,7 +7,8 @@ function Container() {
         startGame,
         gridLetters,
         isTimeRunning,
-        timeRemaining
+        timeRemaining,
+        newWord
     } = Hooks()
 
     let min = Math.floor(timeRemaining / 60)

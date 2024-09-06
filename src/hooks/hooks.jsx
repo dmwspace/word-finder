@@ -6,13 +6,52 @@ export default function Hooks() {
     const [gridLetters, setGridLetters] = useState([])
     const [timeRemaining, setTimeRemaining] = useState(240)
     const [isTimeRunning, setIsTimeRunning] = useState(false)
+    const [newWord, setNewWord] = useState("")
+    const [buttonLetters, setButtonLetters] = useState([])
+    const [usedButtons, setUsedButtons] = useState([])
+    const [prevName, setPrevName] = useState("")
+    const [submittedWord, setSubmittedWord] = useState([])
+    const [buttonStyle, setButtonStyle] = useState(
+        {
+            zero: "button",
+            one: "button",
+            two: "button",
+            three: "button",
+            four: "button",
+            five: "button",
+            six: "button",
+            seven: "button",
+            eight: "button",
+            nine: "button",
+            ten: "button",
+            eleven: "button",
+            twelve: "button",
+            thirteen: "button",
+            fourteen: "button",
+            fifteen: "button",
+            sixteen: "button",
+            seventeen: "button",
+            eighteen: "button",
+            nineteen: "button",
+            twenty: "button",
+            twentyone: "button",
+            twentytwo: "button",
+            twentythree: "button",
+            twentyfour: "button"
+        })
 
     function startGame() {
 
-        setGridLetters([])
-        setTimeRemaining(240)
+        setUsedButtons([])
+        setButtonLetters([])
+        setNewWord("")
+        setSubmittedWord([])
+        resetStyle()
+        setTimeRemaining(180)
         setIsTimeRunning(true)
-        
+        setWordCount(0)
+        setPointCount(0)
+                
         for (let i = 0; i < 25; i++) {
             let randInt = Math.floor(Math.random() * letterCubes.length)
             let randLetterInt = Math.floor(Math.random() * letterCubes[randInt].length)
@@ -33,6 +72,21 @@ export default function Hooks() {
         }
     }, [isTimeRunning, timeRemaining])
 
+    function handleClick(e) {
+        const {name, value} = e.target
+        if (usedButtons.length === 0) {
+                setNewWord(lowerCase)
+                setUsedButtons([...usedButtons, name])
+                setPrevName(name)
+                setButtonStyle(prevStyle => ({...prevStyle, [name]: "clicked-button"}))
+        } else if ((!usedButtons.includes(name)) && (legalMoves[`${name}`].includes(`${prevName}`))) {
+            setNewWord(prevState => prevState + lowerCase)
+            setUsedButtons([...usedButtons, name])
+            setPrevName(name)
+            setButtonStyle(prevStyle => ({...prevStyle, [name]: "clicked-button"}))
+        } else {}
+    }
+
     function endGame() {
         setIsTimeRunning(false)
     }
@@ -47,7 +101,8 @@ export default function Hooks() {
             startGame,
             gridLetters,
             isTimeRunning,
-            timeRemaining
+            timeRemaining,
+            newWord
         }
     )
 
