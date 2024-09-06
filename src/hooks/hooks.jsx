@@ -102,7 +102,8 @@ export default function Hooks() {
             gridLetters,
             isTimeRunning,
             timeRemaining,
-            newWord
+            newWord,
+            handleClick
         }
     )
 
