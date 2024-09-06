@@ -11,6 +11,8 @@ export default function Hooks() {
     const [usedButtons, setUsedButtons] = useState([])
     const [prevName, setPrevName] = useState("")
     const [submittedWord, setSubmittedWord] = useState([])
+    const [wordCount, setWordCount] = useState(0)
+    const [pointCount, setPointCount] = useState(0)
     const [buttonStyle, setButtonStyle] = useState(
         {
             zero: "button",
@@ -93,6 +95,12 @@ export default function Hooks() {
 
     function restartButtonClick() {
         startGame()
+    }
+
+    function resetStyle() {
+        for (let key in buttonStyle) {
+            setButtonStyle(prevStyle => ({...prevStyle, [key]: "button"}))
+        }       
     }
     
     return (
